@@ -1,12 +1,17 @@
 import psycopg2
+import os
+from dotenv import load_dotenv
 
-# Connect to PostgreSQL Database
+# Load environment variables
+load_dotenv()
+
+# Connect to PostgreSQL Database using environment variables
 conn = psycopg2.connect(
-    dbname="victor_db",
-    user="victor",
-    password="PASSWORD",
-    host="localhost",
-    port="5432"
+    dbname=os.getenv("DBNAME"),
+    user=os.getenv("USER"),
+    password=os.getenv("PASSWORD"),
+    host=os.getenv("PG_HOST"),
+    port=os.getenv("PG_PORT")
 )
 
 # Create a cursor object using the cursor() method
